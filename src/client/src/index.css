@@ -230,3 +230,66 @@ body {
 .markdown-content input[type='checkbox'] {
   margin-right: 0.5rem;
 }
+
+/* Dark mode code highlighting adjustments */
+@media (prefers-color-scheme: dark) {
+  .markdown-content pre code.hljs {
+    background: #0d1117;
+    color: #c9d1d9;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #8b949e;
+  }
+
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-regexp,
+  .hljs-deletion {
+    color: #ff7b72;
+  }
+
+  .hljs-number,
+  .hljs-built_in,
+  .hljs-literal,
+  .hljs-type,
+  .hljs-params,
+  .hljs-meta,
+  .hljs-link {
+    color: #79c0ff;
+  }
+
+  .hljs-attribute {
+    color: #ffa657;
+  }
+
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-addition {
+    color: #a5d6ff;
+  }
+
+  .hljs-title,
+  .hljs-section {
+    color: #ffa657;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag {
+    color: #ff7b72;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+}
