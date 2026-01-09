@@ -1,4 +1,5 @@
 import chokidar from 'chokidar';
+import { WebSocket } from 'ws';
 
 export function setupWatcher(directory, wss) {
   const watcher = chokidar.watch('**/*.{md,markdown,mdx}', {
@@ -10,8 +11,7 @@ export function setupWatcher(directory, wss) {
 
   function broadcast(event, data) {
     wss.clients.forEach((client) => {
-      if (client.readyState === 1) {
-        // WebSocket.OPEN
+      if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ event, data }));
       }
     });

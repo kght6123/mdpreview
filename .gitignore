@@ -11,5 +11,4 @@ npm-debug.log*
 *.swo
 *~
 .husky/_
-src/client/dist
 src/client/node_modules
