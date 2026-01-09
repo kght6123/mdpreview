@@ -4,7 +4,7 @@ This document demonstrates syntax highlighting for various programming languages
 
 ## JavaScript
 
-\`\`\`javascript
+```javascript
 class Person {
   constructor(name, age) {
     this.name = name;
@@ -12,17 +12,17 @@ class Person {
   }
 
   greet() {
-    return \`Hello, I'm \${this.name} and I'm \${this.age} years old.\`;
+    return `Hello, I'm \${this.name} and I'm \${this.age} years old.`;
   }
 }
 
 const person = new Person('Alice', 30);
 console.log(person.greet());
-\`\`\`
+```
 
 ## Python
 
-\`\`\`python
+```python
 class Person:
     def __init__(self, name, age):
         self.name = name
@@ -33,11 +33,11 @@ class Person:
 
 person = Person("Alice", 30)
 print(person.greet())
-\`\`\`
+```
 
 ## Go
 
-\`\`\`go
+```go
 package main
 
 import "fmt"
@@ -55,11 +55,11 @@ func main() {
     person := Person{Name: "Alice", Age: 30}
     fmt.Println(person.Greet())
 }
-\`\`\`
+```
 
 ## Rust
 
-\`\`\`rust
+```rust
 struct Person {
     name: String,
     age: u32,
@@ -78,11 +78,11 @@ fn main() {
     };
     println!("{}", person.greet());
 }
-\`\`\`
+```
 
 ## TypeScript
 
-\`\`\`typescript
+```typescript
 interface IPerson {
   name: string;
   age: number;
@@ -92,17 +92,17 @@ class Person implements IPerson {
   constructor(public name: string, public age: number) {}
 
   greet(): string {
-    return \`Hello, I'm \${this.name} and I'm \${this.age} years old.\`;
+    return `Hello, I'm \${this.name} and I'm \${this.age} years old.`;
   }
 }
 
 const person = new Person('Alice', 30);
 console.log(person.greet());
-\`\`\`
+```
 
 ## SQL
 
-\`\`\`sql
+```sql
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
@@ -113,11 +113,11 @@ CREATE TABLE users (
 INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com');
 
 SELECT * FROM users WHERE name = 'Alice';
-\`\`\`
+```
 
 ## Bash
 
-\`\`\`bash
+```bash
 #!/bin/bash
 
 function greet() {
@@ -130,4 +130,4 @@ greet "World"
 for i in {1..5}; do
     echo "Count: $i"
 done
-\`\`\`
+```

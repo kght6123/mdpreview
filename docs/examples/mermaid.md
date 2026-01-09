@@ -4,17 +4,17 @@ This document showcases various Mermaid diagram types.
 
 ## Flowchart
 
-\`\`\`mermaid
+```mermaid
 graph LR
     A[Square Rect] -- Link text --> B((Circle))
     A --> C(Round Rect)
     B --> D{Rhombus}
     C --> D
-\`\`\`
+```
 
 ## Sequence Diagram
 
-\`\`\`mermaid
+```mermaid
 sequenceDiagram
     participant Alice
     participant Bob
@@ -26,11 +26,11 @@ sequenceDiagram
     John-->>Alice: Great!
     John->>Bob: How about you?
     Bob-->>John: Jolly good!
-\`\`\`
+```
 
 ## Class Diagram
 
-\`\`\`mermaid
+```mermaid
 classDiagram
     Animal <|-- Duck
     Animal <|-- Fish
@@ -52,11 +52,11 @@ classDiagram
         +bool is_wild
         +run()
     }
-\`\`\`
+```
 
 ## Gantt Chart
 
-\`\`\`mermaid
+```mermaid
 gantt
     title A Gantt Diagram
     dateFormat  YYYY-MM-DD
@@ -66,4 +66,4 @@ gantt
     section Another
     Task in sec      :2024-01-12  , 12d
     another task      : 24d
-\`\`\`
+```

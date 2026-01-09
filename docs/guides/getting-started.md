@@ -6,35 +6,35 @@ Welcome to the mdpreview getting started guide.
 
 Install mdpreview using npm:
 
-\`\`\`bash
+```bash
 npm install -g github:kght6123/mdpreview
-\`\`\`
+```
 
 Or use it directly with npx:
 
-\`\`\`bash
+```bash
 npx github:kght6123/mdpreview ./docs
-\`\`\`
+```
 
 ## Usage
 
 ### Basic Usage
 
-\`\`\`bash
+```bash
 mdpreview ./docs
-\`\`\`
+```
 
 ### Custom Port
 
-\`\`\`bash
+```bash
 mdpreview ./docs --port 8080
-\`\`\`
+```
 
 ### Disable Auto-open
 
-\`\`\`bash
+```bash
 mdpreview ./docs --no-open
-\`\`\`
+```
 
 ## Next Steps
 

@@ -14,13 +14,13 @@ This is a sample markdown file to demonstrate the features of **mdpreview**.
 
 Here's a simple JavaScript function:
 
-\`\`\`javascript
+```javascript
 function greet(name) {
   return `Hello, ${name}!`;
 }
 
 console.log(greet('World'));
-\`\`\`
+```
 
 ## Tables
 
@@ -40,14 +40,14 @@ console.log(greet('World'));
 
 ## Mermaid Diagram
 
-\`\`\`mermaid
+```mermaid
 graph TD
     A[Start] --> B{Is it working?}
     B -->|Yes| C[Great!]
     B -->|No| D[Debug]
     D --> B
     C --> E[End]
-\`\`\`
+```
 
 ## Blockquote
 
@@ -77,7 +77,7 @@ graph TD
 
 ## Inline Code
 
-You can use \`inline code\` like this.
+You can use `inline code` like this.
 
 ## Strikethrough
 
