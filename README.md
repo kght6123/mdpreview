@@ -97,7 +97,13 @@ npm run build:static
 
 ## GitHub Pages Deployment
 
-This project is automatically deployed to GitHub Pages. See [DEPLOYMENT.md](./docs/DEPLOYMENT.md) for more details.
+This project is automatically deployed to GitHub Pages when changes are pushed to the `main` branch.
+
+**⚠️ Before the first deployment, you must enable GitHub Pages:**
+1. Go to repository Settings > Pages
+2. Set **Source** to **"GitHub Actions"**
+
+See [DEPLOYMENT.md](./docs/DEPLOYMENT.md) for more details.
 
 ## License
 

@@ -55,6 +55,37 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Check if GitHub Pages is configured
+        id: check-pages
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.repos.getPages({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              core.setOutput('pages-enabled', 'true');
+              console.log('✅ GitHub Pages is enabled');
+            } catch (error) {
+              if (error.status === 404) {
+                core.setOutput('pages-enabled', 'false');
+                core.error(`GitHub Pages is not enabled for this repository. Please enable it in Settings > Pages and set the source to "GitHub Actions". Visit: https://github.com/${context.repo.owner}/${context.repo.repo}/settings/pages`);
+              } else {
+                throw error;
+              }
+            }
+
       - name: Deploy to GitHub Pages
         id: deployment
+        if: steps.check-pages.outputs.pages-enabled == 'true'
         uses: actions/deploy-pages@v4
+
+      - name: Skip deployment (Pages not configured)
+        if: steps.check-pages.outputs.pages-enabled == 'false'
+        run: |
+          echo "::error::GitHub Pages is not enabled. Deployment skipped."
+          echo "::error::To enable GitHub Pages:"
+          echo "::error::1. Go to https://github.com/${{ github.repository }}/settings/pages"
+          echo "::error::2. Set Source to 'GitHub Actions'"
+          exit 1
