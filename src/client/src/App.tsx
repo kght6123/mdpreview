@@ -80,7 +80,7 @@ function App() {
       return () => ws.close();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFile]);
+  }, []);
 
   return (
     <>
