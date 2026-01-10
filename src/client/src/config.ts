@@ -22,5 +22,6 @@ export function getApiUrl(endpoint: string): string {
         return endpoint;
     }
   }
+  // In dynamic mode, always use absolute paths without base path
   return endpoint;
 }

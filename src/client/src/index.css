@@ -44,6 +44,16 @@ body {
   }
 }
 
+/* Fullscreen mode styles */
+.fullscreen-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
+
 /* Markdown content styling */
 .markdown-content {
   line-height: 1.8;

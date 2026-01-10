@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import FileTree from './components/FileTree';
 import Preview from './components/Preview';
 import TOC from './components/TOC';
+import FullscreenButton from './components/FullscreenButton';
+import CollapsibleMenuButton from './components/CollapsibleMenuButton';
 import { config, getApiUrl } from './config';
 
 interface TreeNode {
@@ -22,6 +24,7 @@ function App() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [toc, setToc] = useState<TOCItem[]>([]);
   const [notification, setNotification] = useState<string>('');
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const findFirstFile = (node: TreeNode): string | null => {
     if (node.type === 'file' && node.path) {
@@ -35,6 +38,30 @@ function App() {
     }
     return null;
   };
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.error('Error attempting to enable fullscreen:', err);
+      });
+    } else {
+      document.exitFullscreen().catch((err) => {
+        console.error('Error attempting to exit fullscreen:', err);
+      });
+    }
+  };
+
+  // Listen for fullscreen changes (e.g., user pressing ESC)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
 
   useEffect(() => {
     // Fetch file tree
@@ -87,9 +114,83 @@ function App() {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
-      <div className="flex h-screen bg-white dark:bg-gray-900">
+
+      {/* Fullscreen button - always visible */}
+      <FullscreenButton
+        isFullscreen={isFullscreen}
+        onToggle={toggleFullscreen}
+      />
+
+      {/* Collapsible menu buttons in fullscreen mode */}
+      <CollapsibleMenuButton
+        position="left"
+        label="File tree"
+        icon={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        }
+        isFullscreen={isFullscreen}
+      >
+        <div className="overflow-y-auto h-full">
+          {tree ? (
+            <FileTree
+              tree={tree}
+              selectedFile={selectedFile}
+              onSelectFile={setSelectedFile}
+            />
+          ) : (
+            <div className="p-4 text-gray-500 dark:text-gray-400">
+              Loading...
+            </div>
+          )}
+        </div>
+      </CollapsibleMenuButton>
+
+      {toc.length > 0 && (
+        <CollapsibleMenuButton
+          position="right"
+          label="Table of contents"
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 10h16M4 14h16M4 18h16"
+              />
+            </svg>
+          }
+          isFullscreen={isFullscreen}
+        >
+          <div className="overflow-y-auto h-full">
+            <TOC items={toc} />
+          </div>
+        </CollapsibleMenuButton>
+      )}
+
+      <div
+        className={`flex h-screen bg-white dark:bg-gray-900 ${isFullscreen ? 'fullscreen-mode' : ''}`}
+      >
         <aside
-          className="w-64 border-r border-gray-200 dark:border-gray-700 overflow-y-auto"
+          className={`w-64 border-r border-gray-200 dark:border-gray-700 overflow-y-auto ${isFullscreen ? 'hidden' : ''}`}
           role="navigation"
           aria-label="File tree"
         >
@@ -144,7 +245,7 @@ function App() {
 
             {toc.length > 0 && (
               <aside
-                className="w-64 border-l border-gray-200 dark:border-gray-700 overflow-y-auto"
+                className={`w-64 border-l border-gray-200 dark:border-gray-700 overflow-y-auto ${isFullscreen ? 'hidden' : ''}`}
                 role="navigation"
                 aria-label="Table of contents"
               >
