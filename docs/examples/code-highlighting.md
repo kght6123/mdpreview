@@ -1,6 +1,6 @@
-# Code Examples
+# コード例
 
-This document demonstrates syntax highlighting for various programming languages.
+このドキュメントでは、さまざまなプログラミング言語のシンタックスハイライトを実演します。
 
 ## JavaScript
 
@@ -12,11 +12,11 @@ class Person {
   }
 
   greet() {
-    return `Hello, I'm \${this.name} and I'm \${this.age} years old.`;
+    return `こんにちは、私は\${this.name}で、\${this.age}歳です。`;
   }
 }
 
-const person = new Person('Alice', 30);
+const person = new Person('太郎', 30);
 console.log(person.greet());
 ```
 
@@ -29,9 +29,9 @@ class Person:
         self.age = age
     
     def greet(self):
-        return f"Hello, I'm {self.name} and I'm {self.age} years old."
+        return f"こんにちは、私は{self.name}で、{self.age}歳です。"
 
-person = Person("Alice", 30)
+person = Person("太郎", 30)
 print(person.greet())
 ```
 
@@ -48,11 +48,11 @@ type Person struct {
 }
 
 func (p Person) Greet() string {
-    return fmt.Sprintf("Hello, I'm %s and I'm %d years old.", p.Name, p.Age)
+    return fmt.Sprintf("こんにちは、私は%sで、%d歳です。", p.Name, p.Age)
 }
 
 func main() {
-    person := Person{Name: "Alice", Age: 30}
+    person := Person{Name: "太郎", Age: 30}
     fmt.Println(person.Greet())
 }
 ```
@@ -67,13 +67,13 @@ struct Person {
 
 impl Person {
     fn greet(&self) -> String {
-        format!("Hello, I'm {} and I'm {} years old.", self.name, self.age)
+        format!("こんにちは、私は{}で、{}歳です。", self.name, self.age)
     }
 }
 
 fn main() {
     let person = Person {
-        name: String::from("Alice"),
+        name: String::from("太郎"),
         age: 30,
     };
     println!("{}", person.greet());
@@ -92,11 +92,11 @@ class Person implements IPerson {
   constructor(public name: string, public age: number) {}
 
   greet(): string {
-    return `Hello, I'm \${this.name} and I'm \${this.age} years old.`;
+    return `こんにちは、私は\${this.name}で、\${this.age}歳です。`;
   }
 }
 
-const person = new Person('Alice', 30);
+const person = new Person('太郎', 30);
 console.log(person.greet());
 ```
 
@@ -110,9 +110,9 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com');
+INSERT INTO users (name, email) VALUES ('太郎', 'taro@example.com');
 
-SELECT * FROM users WHERE name = 'Alice';
+SELECT * FROM users WHERE name = '太郎';
 ```
 
 ## Bash
@@ -122,12 +122,12 @@ SELECT * FROM users WHERE name = 'Alice';
 
 function greet() {
     local name=$1
-    echo "Hello, $name!"
+    echo "こんにちは、$name！"
 }
 
-greet "World"
+greet "世界"
 
 for i in {1..5}; do
-    echo "Count: $i"
+    echo "カウント: $i"
 done
 ```

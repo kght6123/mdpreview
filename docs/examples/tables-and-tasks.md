@@ -1,87 +1,87 @@
-# Tables and Task Lists
+# テーブルとタスクリスト
 
-This document demonstrates GitHub Flavored Markdown tables and task lists.
+このドキュメントでは、GitHub Flavored Markdownのテーブルとタスクリストを実演します。
 
-## Tables
+## テーブル
 
-### Simple Table
+### シンプルなテーブル
 
-| Feature | Status | Description |
+| 機能 | 状態 | 説明 |
 |---------|--------|-------------|
-| File Tree | ✅ Completed | Display directory structure |
-| Preview | ✅ Completed | Render markdown files |
-| Dark Mode | ✅ Completed | Support dark/light theme |
-| TOC | ✅ Completed | Auto-generate table of contents |
+| ファイルツリー | ✅ 完了 | ディレクトリ構造を表示 |
+| プレビュー | ✅ 完了 | Markdownファイルをレンダリング |
+| ダークモード | ✅ 完了 | ダーク/ライトテーマをサポート |
+| 目次 | ✅ 完了 | 目次を自動生成 |
 
-### Alignment
+### 配置
 
-| Left Aligned | Center Aligned | Right Aligned |
+| 左揃え | 中央揃え | 右揃え |
 |:-------------|:--------------:|--------------:|
-| Apple        | Banana         | Cherry        |
-| Dog          | Elephant       | Fox           |
+| りんご        | バナナ         | さくらんぼ        |
+| 犬          | ゾウ       | キツネ           |
 | 123          | 456            | 789           |
 
-### Complex Table
+### 複雑なテーブル
 
-| Language | Extension | Syntax Highlighting | Example |
+| 言語 | 拡張子 | シンタックスハイライト | 例 |
 |----------|-----------|---------------------|---------|
-| JavaScript | `.js` | ✅ Yes | `console.log()` |
-| TypeScript | `.ts` | ✅ Yes | `const x: number` |
-| Python | `.py` | ✅ Yes | `print("Hello")` |
-| Rust | `.rs` | ✅ Yes | `fn main() {}` |
-| Go | `.go` | ✅ Yes | `func main() {}` |
+| JavaScript | `.js` | ✅ あり | `console.log()` |
+| TypeScript | `.ts` | ✅ あり | `const x: number` |
+| Python | `.py` | ✅ あり | `print("こんにちは")` |
+| Rust | `.rs` | ✅ あり | `fn main() {}` |
+| Go | `.go` | ✅ あり | `func main() {}` |
 
-## Task Lists
+## タスクリスト
 
-### Project Status
+### プロジェクトの状態
 
-- [x] Initial setup
-- [x] Core functionality
-  - [x] File tree display
-  - [x] Markdown rendering
-  - [x] Syntax highlighting
-- [x] Advanced features
-  - [x] Mermaid diagrams
-  - [x] Dark mode
-  - [x] Table of contents
-- [x] Deployment
-  - [x] GitHub Pages setup
-  - [x] CI/CD pipeline
-- [ ] Future enhancements
-  - [ ] Math equations (KaTeX)
-  - [ ] Search functionality
-  - [ ] Export to PDF
+- [x] 初期セットアップ
+- [x] コア機能
+  - [x] ファイルツリー表示
+  - [x] Markdownレンダリング
+  - [x] シンタックスハイライト
+- [x] 高度な機能
+  - [x] Mermaid図表
+  - [x] ダークモード
+  - [x] 目次
+- [x] デプロイ
+  - [x] GitHub Pagesセットアップ
+  - [x] CI/CDパイプライン
+- [ ] 今後の機能強化
+  - [ ] 数式（KaTeX）
+  - [ ] 検索機能
+  - [ ] PDFエクスポート
 
-### Daily Tasks
+### 日次タスク
 
-- [x] Morning standup
-- [x] Code review
-- [ ] Write documentation
-- [ ] Unit tests
-- [ ] Integration tests
+- [x] 朝会
+- [x] コードレビュー
+- [ ] ドキュメント作成
+- [ ] 単体テスト
+- [ ] 統合テスト
 
-## Nested Lists
+## ネストされたリスト
 
-1. **Development Phase**
-   - [x] Planning
-     - [x] Requirements gathering
-     - [x] Architecture design
-   - [x] Implementation
-     - [x] Frontend
-     - [x] Backend
-   - [ ] Testing
-     - [x] Unit tests
-     - [ ] E2E tests
-2. **Deployment Phase**
-   - [x] Setup CI/CD
-   - [x] Deploy to staging
-   - [ ] Deploy to production
+1. **開発フェーズ**
+   - [x] 計画
+     - [x] 要件収集
+     - [x] アーキテクチャ設計
+   - [x] 実装
+     - [x] フロントエンド
+     - [x] バックエンド
+   - [ ] テスト
+     - [x] 単体テスト
+     - [ ] E2Eテスト
+2. **デプロイフェーズ**
+   - [x] CI/CDセットアップ
+   - [x] ステージング環境へのデプロイ
+   - [ ] 本番環境へのデプロイ
 
-## Strikethrough
+## 取り消し線
 
-You can also use ~~strikethrough~~ text to show completed or obsolete items.
+~~取り消し線~~のテキストを使用して、完了または廃止された項目を示すこともできます。
 
-Example:
-- ~~Use jQuery~~ → Use React
+例：
+- ~~jQuery を使用~~ → React を使用
 - ~~MongoDB~~ → PostgreSQL
 - ~~REST API~~ → GraphQL
