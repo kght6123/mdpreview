@@ -70,7 +70,7 @@ jobs:
             } catch (error) {
               if (error.status === 404) {
                 core.setOutput('pages-enabled', 'false');
-                core.setFailed('GitHub Pages is not enabled for this repository. Please enable it in Settings > Pages and set the source to "GitHub Actions".');
+                core.error('GitHub Pages is not enabled for this repository. Please enable it in Settings > Pages and set the source to "GitHub Actions". Visit: https://github.com/${{ github.repository }}/settings/pages');
               } else {
                 throw error;
               }
@@ -80,3 +80,12 @@ jobs:
         id: deployment
         if: steps.check-pages.outputs.pages-enabled == 'true'
         uses: actions/deploy-pages@v4
+
+      - name: Skip deployment (Pages not configured)
+        if: steps.check-pages.outputs.pages-enabled == 'false'
+        run: |
+          echo "::error::GitHub Pages is not enabled. Deployment skipped."
+          echo "::error::To enable GitHub Pages:"
+          echo "::error::1. Go to https://github.com/${{ github.repository }}/settings/pages"
+          echo "::error::2. Set Source to 'GitHub Actions'"
+          exit 1
