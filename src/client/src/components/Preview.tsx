@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import mermaid from 'mermaid';
+import { config } from '../config';
+import { getStaticFileContent } from '../staticData';
 
 interface TOCItem {
   level: number;
@@ -28,17 +30,29 @@ export default function Preview({ filePath, onTOCUpdate }: PreviewProps) {
     });
   }, []);
 
+  const loadDynamicContent = async (
+    filePath: string
+  ): Promise<{
+    html: string;
+    baseDir: string;
+    toc: Array<{ level: number; text: string; id: string }>;
+  }> => {
+    const res = await fetch(`/api/file?path=${encodeURIComponent(filePath)}`);
+    if (!res.ok) throw new Error('Failed to load file');
+    return res.json();
+  };
+
   useEffect(() => {
     if (!filePath) return;
 
     setLoading(true);
     setError(null);
 
-    fetch(`/api/file?path=${encodeURIComponent(filePath)}`)
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to load file');
-        return res.json();
-      })
+    const loadContent = config.isStatic
+      ? getStaticFileContent(filePath)
+      : loadDynamicContent(filePath);
+
+    loadContent
       .then((data) => {
         setHtml(data.html);
         setBaseDir(data.baseDir);
