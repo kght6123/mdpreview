@@ -30,6 +30,18 @@ export default function Preview({ filePath, onTOCUpdate }: PreviewProps) {
     });
   }, []);
 
+  const loadDynamicContent = async (
+    filePath: string
+  ): Promise<{
+    html: string;
+    baseDir: string;
+    toc: Array<{ level: number; text: string; id: string }>;
+  }> => {
+    const res = await fetch(`/api/file?path=${encodeURIComponent(filePath)}`);
+    if (!res.ok) throw new Error('Failed to load file');
+    return res.json();
+  };
+
   useEffect(() => {
     if (!filePath) return;
 
@@ -38,10 +50,7 @@ export default function Preview({ filePath, onTOCUpdate }: PreviewProps) {
 
     const loadContent = config.isStatic
       ? getStaticFileContent(filePath)
-      : fetch(`/api/file?path=${encodeURIComponent(filePath)}`).then((res) => {
-          if (!res.ok) throw new Error('Failed to load file');
-          return res.json();
-        });
+      : loadDynamicContent(filePath);
 
     loadContent
       .then((data) => {

@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  base: mode === 'production' ? '/mdpreview/' : '/',
+  base: mode === 'production' ? process.env.BASE_PATH || '/mdpreview/' : '/',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
