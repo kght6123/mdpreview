@@ -303,3 +303,134 @@ body {
     font-weight: bold;
   }
 }
+
+/* Slide mode styles */
+.markdown-content.slide-mode {
+  max-width: none;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+/* H1 creates a title-only slide */
+.markdown-content.slide-mode h1 {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  font-size: 4rem;
+  margin: 0;
+  padding: 4rem;
+  border-bottom: none;
+  box-sizing: border-box;
+}
+
+/* H2 creates a new slide starting point */
+.markdown-content.slide-mode h2 {
+  scroll-snap-align: start;
+  width: 100%;
+  font-size: 3rem;
+  margin: 0;
+  padding: 4rem 4rem 2rem 4rem;
+  text-align: center;
+  border-bottom: none;
+  min-height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* HR creates a slide separator (invisible but creates snap point) */
+.markdown-content.slide-mode hr {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  margin: 0;
+  border: none;
+  opacity: 0;
+}
+
+/* Content after h2 until next h1/h2/hr */
+.markdown-content.slide-mode h2 ~ *:not(h1):not(h2):not(hr) {
+  scroll-snap-align: none;
+  padding: 0 4rem;
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Adjust paragraph spacing in slide mode */
+.markdown-content.slide-mode p {
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+/* Adjust list spacing in slide mode */
+.markdown-content.slide-mode ul,
+.markdown-content.slide-mode ol {
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+  padding-left: 3rem;
+}
+
+.markdown-content.slide-mode li {
+  margin-bottom: 1rem;
+}
+
+/* Adjust code blocks in slide mode */
+.markdown-content.slide-mode pre {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Adjust tables in slide mode */
+.markdown-content.slide-mode table {
+  font-size: 1.1rem;
+  margin: 2rem auto;
+  max-width: 60rem;
+}
+
+.markdown-content.slide-mode h3 {
+  font-size: 2rem;
+  margin: 2rem 0 1rem 0;
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.markdown-content.slide-mode h4 {
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem 0;
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Blockquote styling in slide mode */
+.markdown-content.slide-mode blockquote {
+  font-size: 1.25rem;
+  margin: 2rem auto;
+  max-width: 60rem;
+  padding: 1.5rem 2rem;
+}
+
+/* Strong and emphasis in slide mode */
+.markdown-content.slide-mode strong {
+  font-size: 1.3em;
+  color: #3b82f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-content.slide-mode strong {
+    color: #60a5fa;
+  }
+}
