@@ -70,7 +70,8 @@ export default function Preview({ filePath, onTOCUpdate }: PreviewProps) {
         setError(err.message);
         setLoading(false);
       });
-  }, [filePath, onTOCUpdate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filePath]);
 
   // Transform image sources to use asset API
   useEffect(() => {
@@ -108,6 +109,7 @@ export default function Preview({ filePath, onTOCUpdate }: PreviewProps) {
 
   return (
     <article
+      key={filePath}
       className="markdown-content"
       dangerouslySetInnerHTML={{ __html: html }}
       aria-label="Markdown content"
