@@ -1,0 +1,14 @@
+node_modules
+dist
+build
+.DS_Store
+*.log
+npm-debug.log*
+.env
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.husky/_
+src/client/node_modules
