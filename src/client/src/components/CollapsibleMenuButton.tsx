@@ -32,6 +32,7 @@ export default function CollapsibleMenuButton({
       <button
         onClick={() => setIsOpen(!isOpen)}
         onMouseEnter={() => setIsOpen(true)}
+        onFocus={() => setIsOpen(true)}
         className="w-12 h-12 rounded-full bg-gray-800 hover:bg-gray-700 text-white shadow-lg flex items-center justify-center transition-colors"
         aria-label={label}
         aria-expanded={isOpen}
@@ -46,7 +47,7 @@ export default function CollapsibleMenuButton({
           onMouseLeave={() => setIsOpen(false)}
           style={{
             maxHeight: 'calc(100vh - 5rem)',
-            width: position === 'left' ? '16rem' : '16rem',
+            width: '16rem',
           }}
         >
           {children}
