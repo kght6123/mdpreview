@@ -12,9 +12,14 @@ interface TOCItem {
 interface PreviewProps {
   filePath: string;
   onTOCUpdate: (toc: TOCItem[]) => void;
+  isSlideMode?: boolean;
 }
 
-export default function Preview({ filePath, onTOCUpdate }: PreviewProps) {
+export default function Preview({
+  filePath,
+  onTOCUpdate,
+  isSlideMode = false,
+}: PreviewProps) {
   const [html, setHtml] = useState<string>('');
   const [baseDir, setBaseDir] = useState<string>('');
   const [loading, setLoading] = useState(true);
@@ -110,7 +115,7 @@ export default function Preview({ filePath, onTOCUpdate }: PreviewProps) {
   return (
     <article
       key={filePath}
-      className="markdown-content"
+      className={`markdown-content ${isSlideMode ? 'slide-mode' : ''}`}
       dangerouslySetInnerHTML={{ __html: html }}
       aria-label="Markdown content"
     />

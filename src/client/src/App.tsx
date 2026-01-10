@@ -3,6 +3,7 @@ import FileTree from './components/FileTree';
 import Preview from './components/Preview';
 import TOC from './components/TOC';
 import FullscreenButton from './components/FullscreenButton';
+import SlideButton from './components/SlideButton';
 import CollapsibleMenuButton from './components/CollapsibleMenuButton';
 import { config, getApiUrl } from './config';
 
@@ -25,6 +26,7 @@ function App() {
   const [toc, setToc] = useState<TOCItem[]>([]);
   const [notification, setNotification] = useState<string>('');
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isSlideMode, setIsSlideMode] = useState(false);
 
   const findFirstFile = (node: TreeNode): string | null => {
     if (node.type === 'file' && node.path) {
@@ -41,6 +43,10 @@ function App() {
 
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
+  };
+
+  const toggleSlideMode = () => {
+    setIsSlideMode(!isSlideMode);
   };
 
   useEffect(() => {
@@ -99,6 +105,13 @@ function App() {
       <FullscreenButton
         isFullscreen={isFullscreen}
         onToggle={toggleFullscreen}
+      />
+
+      {/* Slide mode button - only visible in fullscreen */}
+      <SlideButton
+        isSlideMode={isSlideMode}
+        onToggle={toggleSlideMode}
+        isFullscreen={isFullscreen}
       />
 
       {/* Collapsible menu buttons in fullscreen mode */}
@@ -210,7 +223,11 @@ function App() {
           >
             <div className="flex-1 overflow-y-auto">
               {selectedFile ? (
-                <Preview filePath={selectedFile} onTOCUpdate={setToc} />
+                <Preview
+                  filePath={selectedFile}
+                  onTOCUpdate={setToc}
+                  isSlideMode={isSlideMode}
+                />
               ) : (
                 <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400">
                   <div className="text-center">
