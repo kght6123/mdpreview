@@ -70,7 +70,7 @@ jobs:
             } catch (error) {
               if (error.status === 404) {
                 core.setOutput('pages-enabled', 'false');
-                core.error('GitHub Pages is not enabled for this repository. Please enable it in Settings > Pages and set the source to "GitHub Actions". Visit: https://github.com/${{ github.repository }}/settings/pages');
+                core.error(`GitHub Pages is not enabled for this repository. Please enable it in Settings > Pages and set the source to "GitHub Actions". Visit: https://github.com/${context.repo.owner}/${context.repo.repo}/settings/pages`);
               } else {
                 throw error;
               }
