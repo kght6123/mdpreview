@@ -41,7 +41,7 @@ jobs:
         run: node scripts/generate-static.js
 
       - name: Build client
-        run: cd src/client && npm run build
+        run: cd src/client && STATIC_BUILD=true npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
