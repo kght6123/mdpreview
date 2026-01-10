@@ -11,8 +11,8 @@ export default function FullscreenButton({
     <button
       onClick={onToggle}
       className="fixed top-4 right-4 z-50 w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg flex items-center justify-center transition-colors"
-      aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-      title={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+      aria-label={isFullscreen ? 'Exit focus mode' : 'Enter focus mode'}
+      title={isFullscreen ? 'Exit focus mode' : 'Enter focus mode'}
     >
       {isFullscreen ? (
         <svg
