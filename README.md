@@ -2,6 +2,11 @@
 
 📄 ローカルMarkdownファイルをブラウザでプレビューするCLIツール
 
+## 🌐 Live Demo
+
+GitHub Pages でホストされているデモサイトをご覧ください：  
+**https://kght6123.github.io/mdpreview/**
+
 ## Features
 
 - 🌳 ディレクトリツリー表示
@@ -85,7 +90,14 @@ npm run lint
 
 # Format
 npm run format
+
+# Build static site for GitHub Pages
+npm run build:static
 ```
+
+## GitHub Pages Deployment
+
+This project is automatically deployed to GitHub Pages. See [DEPLOYMENT.md](./docs/DEPLOYMENT.md) for more details.
 
 ## License
 
