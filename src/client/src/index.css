@@ -346,13 +346,12 @@ body {
   box-sizing: border-box;
 }
 
-/* HR creates a slide separator (invisible but creates snap point) */
+/* HR is just a separator, doesn't create a slide */
 .markdown-content.slide-mode hr {
-  scroll-snap-align: start;
-  min-height: 100vh;
   margin: 0;
   border: none;
   opacity: 0;
+  height: 0;
 }
 
 /* Content after h2 until next h1/h2/hr */
