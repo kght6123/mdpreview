@@ -14,6 +14,7 @@
   "scripts": {
     "dev": "node bin/cli.js ./docs",
     "build": "cd src/client && npm run build",
+    "build:static": "node scripts/generate-static.js && cd src/client && npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",

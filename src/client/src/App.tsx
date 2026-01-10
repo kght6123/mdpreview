@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import FileTree from './components/FileTree';
 import Preview from './components/Preview';
 import TOC from './components/TOC';
+import { config, getApiUrl } from './config';
 
 interface TreeNode {
   name: string;
@@ -37,7 +38,7 @@ function App() {
 
   useEffect(() => {
     // Fetch file tree
-    fetch('/api/tree')
+    fetch(getApiUrl('/api/tree'))
       .then((res) => res.json())
       .then((data) => {
         setTree(data);
@@ -49,33 +50,35 @@ function App() {
       })
       .catch((err) => console.error('Failed to load file tree:', err));
 
-    // WebSocket connection for file changes
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const ws = new WebSocket(`${protocol}//${window.location.host}`);
+    // WebSocket connection for file changes (only in dynamic mode)
+    if (!config.isStatic) {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const ws = new WebSocket(`${protocol}//${window.location.host}`);
 
-    ws.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      if (
-        message.event === 'file:changed' &&
-        message.data.path === selectedFile
-      ) {
-        setNotification(`File "${message.data.path}" has been updated`);
-        setTimeout(() => setNotification(''), 3000);
-        // Reload the file
-        setSelectedFile(message.data.path);
-      } else if (
-        message.event === 'file:added' ||
-        message.event === 'file:deleted'
-      ) {
-        // Refresh tree
-        fetch('/api/tree')
-          .then((res) => res.json())
-          .then((data) => setTree(data))
-          .catch((err) => console.error('Failed to refresh tree:', err));
-      }
-    };
+      ws.onmessage = (event) => {
+        const message = JSON.parse(event.data);
+        if (
+          message.event === 'file:changed' &&
+          message.data.path === selectedFile
+        ) {
+          setNotification(`File "${message.data.path}" has been updated`);
+          setTimeout(() => setNotification(''), 3000);
+          // Reload the file
+          setSelectedFile(message.data.path);
+        } else if (
+          message.event === 'file:added' ||
+          message.event === 'file:deleted'
+        ) {
+          // Refresh tree
+          fetch(getApiUrl('/api/tree'))
+            .then((res) => res.json())
+            .then((data) => setTree(data))
+            .catch((err) => console.error('Failed to refresh tree:', err));
+        }
+      };
 
-    return () => ws.close();
+      return () => ws.close();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFile]);
 

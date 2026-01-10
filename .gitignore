@@ -12,3 +12,4 @@ npm-debug.log*
 *~
 .husky/_
 src/client/node_modules
+src/client/public/data
