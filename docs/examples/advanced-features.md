@@ -1,25 +1,25 @@
-# Advanced Markdown Features
+# 高度なMarkdown機能
 
-This document showcases advanced markdown features supported by mdpreview.
+このドキュメントでは、mdpreviewでサポートされている高度なMarkdown機能を紹介します。
 
-## Blockquotes
+## 引用
 
-> This is a simple blockquote.
+> これはシンプルな引用です。
 
-> This is a blockquote with multiple paragraphs.
+> これは複数の段落を含む引用です。
 >
-> It can contain multiple lines and paragraphs.
+> 複数の行と段落を含めることができます。
 
-> ### Nested Blockquote
+> ### ネストされた引用
 > 
-> You can also nest blockquotes:
+> 引用をネストすることもできます：
 > 
-> > This is a nested blockquote.
-> > It appears indented.
+> > これはネストされた引用です。
+> > インデントされて表示されます。
 
-## Horizontal Rules
+## 水平線
 
-You can create horizontal rules using three or more hyphens, asterisks, or underscores:
+ハイフン、アスタリスク、アンダースコアを3つ以上使って水平線を作成できます：
 
 ---
 
@@ -27,84 +27,84 @@ You can create horizontal rules using three or more hyphens, asterisks, or under
 
 ___
 
-## Links
+## リンク
 
-### Basic Links
+### 基本的なリンク
 
 - [GitHub](https://github.com)
-- [mdpreview Repository](https://github.com/kght6123/mdpreview)
-- [Markdown Guide](https://www.markdownguide.org)
+- [mdpreview リポジトリ](https://github.com/kght6123/mdpreview)
+- [Markdown ガイド](https://www.markdownguide.org)
 
-### Reference-style Links
+### 参照スタイルのリンク
 
-This is [an example][1] of a reference-style link.
+これは参照スタイルのリンクの[例][1]です。
 
-You can also use [numbers][1] or [text][link-text] as references.
+[数字][1]や[テキスト][link-text]を参照として使用することもできます。
 
 [1]: https://example.com
 [link-text]: https://www.markdownguide.org
 
-### Automatic Links
+### 自動リンク
 
 <https://www.example.com>  
 <email@example.com>
 
-## Emphasis
+## 強調
 
-- *italic text* or _italic text_
-- **bold text** or __bold text__
-- ***bold and italic*** or ___bold and italic___
-- ~~strikethrough text~~
+- *斜体テキスト* または _斜体テキスト_
+- **太字テキスト** または __太字テキスト__
+- ***太字と斜体*** または ___太字と斜体___
+- ~~取り消し線テキスト~~
 
-## Lists
+## リスト
 
-### Unordered Lists
+### 順序なしリスト
 
-- Item 1
-- Item 2
-  - Nested item 2.1
-  - Nested item 2.2
-    - Deeply nested item 2.2.1
-- Item 3
+- 項目1
+- 項目2
+  - ネストされた項目2.1
+  - ネストされた項目2.2
+    - 深くネストされた項目2.2.1
+- 項目3
 
-### Ordered Lists
+### 順序付きリスト
 
-1. First item
-2. Second item
-   1. Nested item 2.1
-   2. Nested item 2.2
-3. Third item
+1. 最初の項目
+2. 2番目の項目
+   1. ネストされた項目2.1
+   2. ネストされた項目2.2
+3. 3番目の項目
 
-### Mixed Lists
+### 混合リスト
 
-1. Ordered item 1
-   - Unordered nested item
-   - Another unordered item
-2. Ordered item 2
-   1. Ordered nested item
-   2. Another ordered nested item
+1. 順序付き項目1
+   - 順序なしのネストされた項目
+   - 別の順序なし項目
+2. 順序付き項目2
+   1. 順序付きのネストされた項目
+   2. 別の順序付きネストされた項目
 
-## Code
+## コード
 
-### Inline Code
+### インラインコード
 
-Use backticks for `inline code` in your text.
+テキスト内で`インラインコード`にバッククォートを使用します。
 
-You can also include code variables like `const x = 10` or commands like `npm install`.
+`const x = 10`のようなコード変数や、`npm install`のようなコマンドを含めることもできます。
 
-### Code Blocks with Language Specification
+### 言語指定のコードブロック
 
 #### HTML
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Example</title>
+    <title>例</title>
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <h1>こんにちは、世界！</h1>
 </body>
 </html>
 ```
@@ -132,7 +132,7 @@ You can also include code variables like `const x = 10` or commands like `npm in
 {
   "name": "mdpreview",
   "version": "1.0.0",
-  "description": "Markdown Preview Tool",
+  "description": "Markdownプレビューツール",
   "author": "kght6123",
   "license": "MIT"
 }
@@ -143,50 +143,50 @@ You can also include code variables like `const x = 10` or commands like `npm in
 ```bash
 #!/bin/bash
 
-# Build the project
+# プロジェクトをビルド
 npm run build
 
-# Run tests
+# テストを実行
 npm test
 
-# Deploy
+# デプロイ
 npm run deploy
 ```
 
-## Images
+## 画像
 
-Images would be displayed here if we had image files:
+画像ファイルがあれば、ここに表示されます：
 
 ```markdown
-![Alt text](./image.png)
-![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+![代替テキスト](./image.png)
+![GitHub ロゴ](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
 ```
 
-## Escaping Characters
+## 特殊文字のエスケープ
 
-You can escape special characters:
+特殊文字をエスケープできます：
 
-\* Not italic \*  
-\# Not a heading  
-\- Not a list item  
+\* 斜体ではない \*  
+\# 見出しではない  
+\- リスト項目ではない  
 
-## Footnotes
+## 脚注
 
-Here's a sentence with a footnote[^1].
+これは脚注付きの文です[^1]。
 
-[^1]: This is the footnote content.
+[^1]: これは脚注の内容です。
 
-## Definition Lists
+## 定義リスト
 
-Term 1
-: Definition 1
+用語1
+: 定義1
 
-Term 2
-: Definition 2a
-: Definition 2b
+用語2
+: 定義2a
+: 定義2b
 
-## Emoji (if supported)
+## 絵文字（サポートされている場合）
 
 :smile: :rocket: :heart: :+1: :tada:
 
-Note: Emoji support depends on the renderer configuration.
+注：絵文字のサポートは、レンダラーの設定に依存します。
