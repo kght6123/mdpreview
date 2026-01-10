@@ -19,61 +19,6 @@ interface TOCItem {
   id: string;
 }
 
-// TypeScript interfaces for vendor-prefixed fullscreen APIs
-interface DocumentWithFullscreen extends Document {
-  webkitFullscreenElement?: Element;
-  mozFullScreenElement?: Element;
-  msFullscreenElement?: Element;
-  webkitExitFullscreen?: () => Promise<void>;
-  mozCancelFullScreen?: () => Promise<void>;
-  msExitFullscreen?: () => Promise<void>;
-}
-
-interface HTMLElementWithFullscreen extends HTMLElement {
-  webkitRequestFullscreen?: () => Promise<void>;
-  mozRequestFullScreen?: () => Promise<void>;
-  msRequestFullscreen?: () => Promise<void>;
-}
-
-// Cross-browser fullscreen helper functions
-const getFullscreenElement = () => {
-  const doc = document as DocumentWithFullscreen;
-  return (
-    doc.fullscreenElement ||
-    doc.webkitFullscreenElement ||
-    doc.mozFullScreenElement ||
-    doc.msFullscreenElement
-  );
-};
-
-const requestFullscreen = (element: HTMLElement) => {
-  const el = element as HTMLElementWithFullscreen;
-  if (element.requestFullscreen) {
-    return element.requestFullscreen();
-  } else if (el.webkitRequestFullscreen) {
-    return el.webkitRequestFullscreen();
-  } else if (el.mozRequestFullScreen) {
-    return el.mozRequestFullScreen();
-  } else if (el.msRequestFullscreen) {
-    return el.msRequestFullscreen();
-  }
-  return Promise.reject(new Error('Fullscreen API not supported'));
-};
-
-const exitFullscreen = () => {
-  const doc = document as DocumentWithFullscreen;
-  if (document.exitFullscreen) {
-    return document.exitFullscreen();
-  } else if (doc.webkitExitFullscreen) {
-    return doc.webkitExitFullscreen();
-  } else if (doc.mozCancelFullScreen) {
-    return doc.mozCancelFullScreen();
-  } else if (doc.msExitFullscreen) {
-    return doc.msExitFullscreen();
-  }
-  return Promise.reject(new Error('Fullscreen API not supported'));
-};
-
 function App() {
   const [tree, setTree] = useState<TreeNode | null>(null);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
@@ -95,45 +40,8 @@ function App() {
   };
 
   const toggleFullscreen = () => {
-    if (!getFullscreenElement()) {
-      requestFullscreen(document.documentElement).catch((err: unknown) => {
-        console.error('Error attempting to enable fullscreen:', err);
-      });
-    } else {
-      exitFullscreen().catch((err: unknown) => {
-        console.error('Error attempting to exit fullscreen:', err);
-      });
-    }
+    setIsFullscreen(!isFullscreen);
   };
-
-  // Listen for fullscreen changes (e.g., user pressing ESC) - with vendor prefixes
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!getFullscreenElement());
-    };
-
-    // Add listeners for all vendor prefixes
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
-
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener(
-        'webkitfullscreenchange',
-        handleFullscreenChange
-      );
-      document.removeEventListener(
-        'mozfullscreenchange',
-        handleFullscreenChange
-      );
-      document.removeEventListener(
-        'MSFullscreenChange',
-        handleFullscreenChange
-      );
-    };
-  }, []);
 
   useEffect(() => {
     // Fetch file tree
