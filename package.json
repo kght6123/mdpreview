@@ -11,6 +11,12 @@
   "bin": {
     "mdpreview": "./bin/cli.js"
   },
+  "files": [
+    "bin",
+    "src/server",
+    "src/client/dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "node bin/cli.js ./docs",
     "build": "cd src/client && npm run build",
@@ -20,7 +26,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "cd src/client && npm run typecheck",
-    "prepare": "husky"
+    "prepare": "[ -d .husky ] && husky || true",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "chokidar": "^4.0.1",
