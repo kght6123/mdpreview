@@ -26,7 +26,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "cd src/client && npm run typecheck",
-    "prepare": "husky || true",
+    "prepare": "[ -d .husky ] && husky || true",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

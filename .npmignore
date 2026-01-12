@@ -31,7 +31,9 @@ src/client/tsconfig.node.json
 src/client/vite.config.ts
 
 # Keep src/client/dist - DO NOT exclude it!
-# This is the built client that must be included in the npm package
+# This is the built client that must be included in the npm package.
+# Note: .npmignore overrides .gitignore for npm packaging, allowing us to
+# include dist in npm packages while keeping it excluded from git.
 
 # Exclude test and documentation source files
 docs
