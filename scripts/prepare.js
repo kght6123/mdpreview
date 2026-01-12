@@ -42,7 +42,7 @@ if (!existsSync(clientDistPath)) {
         cwd: join(rootDir, 'src/client'),
       });
     } catch {
-      console.error('❌ Failed to install client dependencies');
+      console.error('❌ Failed to install client dependencies in src/client');
       process.exit(1);
     }
   }
@@ -55,7 +55,7 @@ if (!existsSync(clientDistPath)) {
     });
     console.log('✓ Client build complete');
   } catch {
-    console.error('❌ Failed to build client');
+    console.error('❌ Failed to build client in src/client');
     process.exit(1);
   }
 } else {
