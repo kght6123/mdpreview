@@ -1,0 +1,41 @@
+# Exclude development files from npm package
+node_modules
+.git
+.github
+.gitignore
+.DS_Store
+*.log
+npm-debug.log*
+.env
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.husky
+.lintstagedrc
+.prettierrc
+eslint.config.js
+
+# Exclude client source files but keep dist
+src/client/node_modules
+src/client/src
+src/client/public
+src/client/index.html
+src/client/package.json
+src/client/package-lock.json
+src/client/postcss.config.js
+src/client/tailwind.config.js
+src/client/tsconfig.json
+src/client/tsconfig.node.json
+src/client/vite.config.ts
+
+# Keep src/client/dist - DO NOT exclude it!
+# This is the built client that must be included in the npm package
+
+# Exclude test and documentation source files
+docs
+scripts
+
+# Exclude CI/CD files
+.husky/_
