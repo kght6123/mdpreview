@@ -12,17 +12,11 @@ import { visit } from 'unist-util-visit';
 // Plugin to remove frontmatter from the AST
 function remarkRemoveFrontmatter() {
   return (tree) => {
-    // Remove all yaml, toml, and other frontmatter nodes
-    visit(tree, (node, index, parent) => {
-      if (
-        node.type === 'yaml' ||
-        node.type === 'toml' ||
-        node.type === 'json'
-      ) {
-        parent.children.splice(index, 1);
-        return [visit.SKIP, index];
-      }
-    });
+    // Filter out all yaml, toml, and json frontmatter nodes
+    tree.children = tree.children.filter(
+      (node) =>
+        node.type !== 'yaml' && node.type !== 'toml' && node.type !== 'json'
+    );
   };
 }
 
@@ -85,8 +79,12 @@ export async function getFileContent(baseDir, filePath) {
 
 function extractTOC(markdown) {
   // Remove frontmatter before extracting headings
-  const frontmatterRegex = /^---\s*\n[\s\S]*?\n---\s*\n/;
-  const contentWithoutFrontmatter = markdown.replace(frontmatterRegex, '');
+  // Support YAML (---) and TOML (+++) frontmatter
+  const yamlFrontmatterRegex = /^---\s*\n[\s\S]*?\n---\s*\n/;
+  const tomlFrontmatterRegex = /^\+\+\+\s*\n[\s\S]*?\n\+\+\+\s*\n/;
+  const contentWithoutFrontmatter = markdown
+    .replace(yamlFrontmatterRegex, '')
+    .replace(tomlFrontmatterRegex, '');
 
   const headingRegex = /^(#{1,6})\s+(.+)$/gm;
   const toc = [];
