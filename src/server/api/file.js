@@ -2,11 +2,22 @@ import { readFile } from 'fs/promises';
 import { join, resolve, dirname } from 'path';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
+import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 import { visit } from 'unist-util-visit';
+
+// Plugin to remove frontmatter from the AST
+function remarkRemoveFrontmatter() {
+  return (tree) => {
+    // Filter out all yaml and toml frontmatter nodes
+    tree.children = tree.children.filter(
+      (node) => node.type !== 'yaml' && node.type !== 'toml'
+    );
+  };
+}
 
 // Plugin to add IDs to headings
 function rehypeAddHeadingIds() {
@@ -40,6 +51,8 @@ export async function getFileContent(baseDir, filePath) {
   // Parse markdown and generate HTML
   const file = await unified()
     .use(remarkParse)
+    .use(remarkFrontmatter, ['yaml', 'toml'])
+    .use(remarkRemoveFrontmatter)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: false })
     .use(rehypeAddHeadingIds)
@@ -64,11 +77,20 @@ export async function getFileContent(baseDir, filePath) {
 }
 
 function extractTOC(markdown) {
+  // Remove frontmatter before extracting headings
+  // This is done here separately because TOC extraction works on raw markdown
+  // before AST processing. Support YAML (---) and TOML (+++) frontmatter.
+  const yamlFrontmatterRegex = /^---\s*\n[\s\S]*?\n---\s*(?:\n|$)/;
+  const tomlFrontmatterRegex = /^\+\+\+\s*\n[\s\S]*?\n\+\+\+\s*(?:\n|$)/;
+  const contentWithoutFrontmatter = markdown
+    .replace(yamlFrontmatterRegex, '')
+    .replace(tomlFrontmatterRegex, '');
+
   const headingRegex = /^(#{1,6})\s+(.+)$/gm;
   const toc = [];
   let match;
 
-  while ((match = headingRegex.exec(markdown)) !== null) {
+  while ((match = headingRegex.exec(contentWithoutFrontmatter)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
     const id = text
